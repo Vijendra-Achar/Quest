@@ -1,0 +1,12 @@
+.center{
+  text-align: center;
+}
+
+.bold{
+  font-weight: 600;
+}
+
+.margin{
+  margin: 30px;
+  font-size: 1.2em;
+}

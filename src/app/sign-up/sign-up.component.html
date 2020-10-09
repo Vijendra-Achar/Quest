@@ -1,0 +1,56 @@
+<div class="container">
+  <h3 class="display-3">Sign Up </h3>
+  <h3 class="display-6">Please Enter the Details to create an account.</h3>
+  <br />
+
+
+  <form [formGroup]="signUpCred" (ngSubmit)="onSignUp()">
+
+    <div class="row" *ngIf="authErrorsDisplay">
+      <div class="col col-md-6">
+        <div class="alert alert-danger">
+          {{ authErrorsDisplay }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input formControlName="name" type="text" class="form-control" id="id" placeholder="Enter email">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="form-group">
+          <label for="id">Email ID</label>
+          <input formControlName="emailId" type="email" class="form-control" id="id" placeholder="Enter Name">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="form-group">
+          <label for="newPassword">New Password</label>
+          <input formControlName="newPassword" type="password" class="form-control" id="newPassword"
+            placeholder="New Password">
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col">
+        <button *ngIf="!isLoading" type="submit" class="btn btn-primary">Sign Me Up</button>
+        <button *ngIf="isLoading" disabled class="btn btn-primary">Sign You Up...</button>
+      </div>
+    </div>
+
+  </form>
+</div>

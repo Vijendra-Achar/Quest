@@ -1,0 +1,97 @@
+<div id="print-section">
+
+
+  <div class="container" id="printContent" #printContent>
+    <div class="center">
+      <h1 class="display-4 bold">Jay University</h1>
+      <h4 class="display-6">School of Engineering & Technology</h4>
+      <h6 class="display-6">Department of {{ paperDetails?.subjectDept }}</h6>
+      <br />
+
+      <h4 class="display-6">{{ paperDetails?.subjectName }} {{ paperDetails?.examType | titlecase }} Exam</h4>
+
+    </div>
+
+    <br />
+
+    <div class="row">
+
+      <div class="col col-md-3">
+        <p class="bold">Subject Code: {{ paperDetails?.subjectCode }}</p>
+        <p class="bold">Date of Exam: {{ paperDetails?.dateOfExam }}</p>
+        <p class="bold">Semester: {{ paperDetails?.subjectSem }} Sem</p>
+      </div>
+
+      <div class="col col-md-3 offset-md-6">
+        <p class="bold">Time Duration: {{ paperDetails?.durationOfExam }} Hours</p>
+        <p class="bold">Subject Credit: {{ paperDetails?.subjectCredit }} Credits</p>
+        <p class="bold">Total Marks: {{paperDetails?.maxMarks}}</p>
+      </div>
+
+    </div>
+
+    <hr>
+
+    <br />
+
+    <div class="row">
+      <div class="col col-md-2 offset-md-1">
+        <h5 class="display-5">Instructions :</h5>
+      </div>
+
+      <div class="col">
+        <p>1. Answer All the questions.</p>
+        <p>2. Assume Missing Data.</p>
+        <p>3. Draw the diagrams whenever needed.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <div>
+
+      <div *ngFor="let ques of paperDetails?.questionsArr">
+        <div class="row margin">
+          <div class="col col-md-1">
+            {{ques.qNumber}}
+          </div>
+          <div class="col col-md-7">
+            {{ques.question}}
+          </div>
+          <div class="col col-md-1">
+            {{ques.marks}}
+          </div>
+          <div class="col col-md-2">
+            [{{ques.difficultyLevel}}]
+          </div>
+          <div class="col col-md-1">
+            [{{ques.coMapping}}]
+          </div>
+          <br />
+        </div>
+
+        <div *ngIf="ques.mandatoryOrOptional == 'or'" class="row">
+          <div class="col">
+            <div class="center">
+              <div> OR </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="center">
+        <p>---End Of Paper---</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="center">
+  <button class="btn btn-warning" [useExistingCss]="true" printSectionId="print-section" ngxPrint>Download
+    PDF</button>
+</div>
+
+<app-footer></app-footer>

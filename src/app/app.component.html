@@ -1,0 +1,34 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">QuesPaper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarText">
+    <span class="navbar-text">
+
+    </span>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg navbar-light margin bg-color">
+  <a class="navbar-brand" routerLink="/"><span class="bold logo">QuesPaper</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarText" *ngIf="(userName$ | async)?.displayName ">
+    <ul class="navbar-nav ml-auto">
+      <span class="navbar-text">
+        Logged in as <span class="bold"> {{ (userName$ | async)?.displayName }} </span> <button class="btn btn-link"
+          (click)="onSignOut()">Sign
+          Out</button>
+      </span>
+    </ul>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

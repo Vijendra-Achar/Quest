@@ -1,0 +1,50 @@
+<div class="container">
+  <h3 class="display-3">Login </h3>
+  <h3 class="display-6">Please Login to continue.</h3>
+  <br />
+
+  <form [formGroup]="loginCred" (ngSubmit)="onLogin()">
+
+    <div class="row" *ngIf="authErrorsDisplay">
+      <div class="col col-md-6">
+        <div class="alert alert-danger">{{ authErrorsDisplay }}</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="form-group">
+          <label for="emailId">Email ID</label>
+          <input formControlName="emailId" type="email" class="form-control" id="emailId" placeholder="Enter email">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        Don't Have an Account? <a routerLink="/sign-up"> Sign Up</a>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col">
+        <button *ngIf="!isLoading" type="submit" class="btn btn-primary">Log Me In</button>
+        <button *ngIf="isLoading" disabled class="btn btn-primary">Logging You In...</button>
+      </div>
+    </div>
+
+  </form>
+
+</div>

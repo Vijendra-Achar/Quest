@@ -1,0 +1,251 @@
+<div class="container">
+
+  <h2 class="display-4 center">Create New Question Paper</h2>
+
+  <div>
+
+    <form [formGroup]="newQuesForm" (ngSubmit)="onFormSubmit()">
+
+      <br />
+      <h4 class="display-6">General Information</h4>
+      <br />
+
+      <div class="row">
+
+        <div class="col col-md-6">
+          <div class="form-group">
+            <label for="subjectCode">Subject Code</label>
+            <input formControlName="subjectCode" type="text" class="form-control" id="subjectCode">
+          </div>
+        </div>
+
+        <div class="col col-md-6">
+          <div class="form-group">
+            <label for="subjectName">Name of the Subject</label>
+            <input formControlName="subjectName" type="text" class="form-control" id="subjectName">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+
+        <div class="col col-md-4">
+          <div class="form-group">
+            <label for="subjectDept">Department</label>
+            <select formControlName="subjectDept" class="form-control" id="subjectDept">
+              <option value="CSE">Computer Science</option>
+              <option value="ECE">Electronics and Communications</option>
+              <option value="ME">Mechanical Engineering</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-md-4">
+          <div class="form-group">
+            <label for="subjectSem">Semester</label>
+            <select formControlName="subjectSem" class="form-control" id="subjectSem">
+              <option value="1">I Sem</option>
+              <option value="2">II Sem</option>
+              <option value="3">III Sem</option>
+              <option value="4">IV Sem</option>
+              <option value="5">V Sem</option>
+              <option value="6">VI Sem</option>
+              <option value="7">VII Sem</option>
+              <option value="8">VIII Sem</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-md-4">
+          <div class="form-group">
+            <label for="subjectCredit">Credit Score</label>
+            <select formControlName="subjectCredit" class="form-control" id="subjectCredit">
+              <option value="5">5 Credits</option>
+              <option value="7">7 Credits</option>
+              <option value="10">10 Credits</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!--Row End-->
+
+      <div class="row">
+
+        <div class="col col-3">
+          <div class="form-group">
+            <label for="dateOfExam">Date of Exam</label>
+            <input formControlName="dateOfExam" type="text" class="form-control" id="dateOfExam">
+          </div>
+        </div>
+
+        <div class="col col-3">
+          <div class="form-group">
+            <label for="durationOfExam">Duration of Exam</label>
+            <select formControlName="durationOfExam" class="form-control" id="durationOfExam">
+              <option value="1">1 Hour</option>
+              <option value="1-30">1 Hour 30 Mins</option>
+              <option value="2">2 Hours</option>
+              <option value="3">3 Hours</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-3">
+          <div class="form-group">
+            <label for="maxMarks">Maximum Marks</label>
+            <select formControlName="maxMarks" class="form-control" id="maxMarks">
+              <option value="50">50</option>
+              <option value="70">70</option>
+              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col col-3">
+          <div class="form-group">
+            <label for="examType">Type of Exam</label>
+            <select formControlName="examType" class="form-control" id="examType">
+              <option value="internal">Interal</option>
+              <option value="main">Main</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!--Row End-->
+
+      <br />
+      <h4 class="display-6">Questions </h4>
+      <br />
+
+      <div formArrayName="questionsArr">
+
+        <div *ngFor="let ques of questionsArrFroms.controls; let i=index" [formGroupName]="i">
+
+          <div class="row">
+
+            <div class="col col-md-1">
+              <div class="form-group">
+                <label for="qNumber">Q No.</label>
+                <input formControlName="qNumber" type="text" class="form-control" id="qNumber">
+              </div>
+            </div>
+
+            <div class="col col-md-7">
+              <div class="form-group">
+                <label for="question">Problem Statement</label>
+                <input formControlName="question" type="text" class="form-control" id="question">
+              </div>
+            </div>
+
+            <div class="col col-md-1">
+              <div class="form-group">
+                <label for="marks">Marks</label>
+                <input formControlName="marks" type="text" class="form-control" id="marks">
+              </div>
+            </div>
+
+            <div class="col col-md-2">
+              <div class="form-group">
+                <label for="coMapping">CO Mapping</label>
+                <select formControlName="coMapping" class="form-control" id="coMapping">
+                  <option value="co1">CO-1</option>
+                  <option value="co2">CO-2</option>
+                  <option value="co3">CO-3</option>
+                  <option value="co4">CO-4</option>
+                  <option value="co5">CO-5</option>
+                  <option value="co6">CO-6</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col col-md-1">
+              <div class="form-group">
+                <label>Delete</label>
+                <button (click)="onDeleteQues(i)" class="btn btn-danger">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                    <path fill-rule="evenodd"
+                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!--Row End-->
+
+          <div class="row">
+
+            <div class="col col-md-4">
+              <div class="form-group">
+                <label for="mandatoryOrOptional">Mandatory/Choose</label>
+                <select formControlName="mandatoryOrOptional" class="form-control" id="mandatoryOrOptional">
+                  <option value="mandatory">Mandatory</option>
+                  <option value="or">Choose (OR)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col col-md-4">
+              <div class="form-group">
+                <label for="quesType">Question Type</label>
+                <select formControlName="quesType" class="form-control" id="quesType">
+                  <option value="shortAns">Short Answer</option>
+                  <option value="descAns">Descriptive</option>
+                  <option value="essayAns">Essay</option>
+                  <option value="compAnsx">Computaitonal</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col col-md-4">
+              <div class="form-group">
+                <label for="difficultyLevel">Difficulty Level</label>
+                <select formControlName="difficultyLevel" class="form-control" id="difficultyLevel">
+                  <option value="remember">Remember</option>
+                  <option value="understand">Understand</option>
+                  <option value="apply">Apply</option>
+                  <option value="create">Create</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col col-md-12">
+              <hr>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <br />
+
+      <div class="center">
+        <button type="button" (click)="addNewQuestion()" class="btn btn-primary">Add New Question</button>
+      </div>
+
+
+      <br />
+      <div class="center">
+        <button type="submit" class="btn btn-success margin">Submit</button>
+        <button (click)="onCancel()" type="button" class="btn btn-warning margin">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+<app-footer></app-footer>

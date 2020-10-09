@@ -1,0 +1,52 @@
+<div class="container">
+  <h3 class="display-4">Hello, {{ (userName$ | async)?.displayName }} </h3>
+
+  <h4 class="diaplay-5">Create and manage your Question Papers.</h4>
+
+  <br />
+
+  <h4 class="diaplay-5">Existing Papers.</h4>
+
+  <br />
+
+  <table class="table margin">
+
+    <thead>
+      <tr>
+        <th scope="col">Course Code</th>
+        <th scope="col">Course Title</th>
+        <th scope="col">Semester</th>
+        <th scope="col">Department</th>
+        <th scope="col">Exam Type</th>
+        <th scope="col">Credit</th>
+        <th scope="col">View?</th>
+        <th scope="col">Edit?</th>
+      </tr>
+    </thead>
+
+    <tbody *ngFor="let paper of quesPapers$ | async; let i=index">
+
+      <tr>
+        <td scope="row">{{ paper.subjectCode }}</td>
+        <td>{{ paper.subjectName }}</td>
+        <td>Sem {{ paper.subjectSem }}</td>
+        <td>{{ paper.subjectDept }}</td>
+        <td>{{ paper.examType | titlecase }} Exam</td>
+        <td>{{ paper.subjectCredit }} Credits</td>
+        <td><a routerLink="/view/{{ paper.id }}"> View</a></td>
+        <td><a routerLink="/edit/{{ paper.id }}"> Edit</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <br />
+  <div class="center">
+    <h5 class="display-5">Create and Customize your Question Paper.</h5><br />
+    <button routerLink="/create-new-paper" class="btn btn-primary"> Create new Question Paper</button>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
